@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   const handleBackButtonClick = () => {
     if (location.key) {
