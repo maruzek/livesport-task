@@ -16,10 +16,16 @@ const SearchBar = () => {
     setSearchParams({ q: searchQuery, filter: activeFilter });
   };
 
+  const handleClear = () => {
+    setSearchQuery("");
+    setActiveFilter("all");
+    setSearchParams({ q: "", filter: "all" });
+  };
+
   return (
     <div>
       <form onSubmit={(e) => handleSearch(e)}>
-        <div className="flex w-full items-center justify-center bg-gray-800 p-4 focus:ring-1 focus:ring-red-500">
+        <div className="relative flex w-full items-center justify-center bg-gray-800 p-4 focus:ring-1 focus:ring-red-500">
           <input
             type="text"
             placeholder="Search..."
@@ -27,6 +33,15 @@ const SearchBar = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+          {searchQuery && (
+            <button
+              type="button"
+              className="absolute right-30 text-gray-400 hover:text-white"
+              onClick={handleClear}
+            >
+              &times;
+            </button>
+          )}
           <button className="cursor-pointer rounded-md rounded-tl-none rounded-bl-none border border-red-800 bg-red-700 px-4 py-2 text-white transition-colors duration-100 hover:bg-red-800">
             Search
           </button>
@@ -38,21 +53,21 @@ const SearchBar = () => {
           onFilterChange={setActiveFilter}
           activeFilter={activeFilter}
         >
-          Vše
+          All
         </FilterButton>
         <FilterButton
           filterValue="teams"
           onFilterChange={setActiveFilter}
           activeFilter={activeFilter}
         >
-          Týmy
+          Teams
         </FilterButton>
         <FilterButton
           filterValue="competitions"
           onFilterChange={setActiveFilter}
           activeFilter={activeFilter}
         >
-          Soutěže
+          Competitions
         </FilterButton>
       </div>
       <hr className="mt-5 mb-2 text-gray-500" />
