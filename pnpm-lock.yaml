@@ -11,6 +11,9 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.2.5
         version: 5.2.5
+      '@fontsource-variable/tektur':
+        specifier: ^5.2.5
+        version: 5.2.5
       '@tailwindcss/vite':
         specifier: ^4.1.7
         version: 4.1.7(vite@6.3.5(jiti@2.4.2)(lightningcss@1.30.1))
@@ -342,6 +345,9 @@ packages:
 
   '@fontsource-variable/inter@5.2.5':
     resolution: {integrity: sha512-TrWffUAFOnT8zroE9YmGybagoOgM/HjRqMQ8k9R0vVgXlnUh/vnpbGPAS/Caz1KIlOPnPGh6fvJbb7DHbFCncA==}
+
+  '@fontsource-variable/tektur@5.2.5':
+    resolution: {integrity: sha512-HWm4Ver+ZvGb6mZksNoTa3A6+faOIjaGICrjf+oBjpRLber0SpwQASoPXQK9oni+SlIvHErb6HTlEP9xOjX5sw==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1916,6 +1922,8 @@ snapshots:
       levn: 0.4.1
 
   '@fontsource-variable/inter@5.2.5': {}
+
+  '@fontsource-variable/tektur@5.2.5': {}
 
   '@humanfs/core@0.19.1': {}
 
