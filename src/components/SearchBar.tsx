@@ -55,7 +55,7 @@ const SearchBar = () => {
           Soutěže
         </FilterButton>
       </div>
-      <hr className="my-3 text-gray-500" />
+      <hr className="mt-5 mb-2 text-gray-500" />
     </div>
   );
 };
