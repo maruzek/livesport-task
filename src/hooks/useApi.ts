@@ -23,6 +23,7 @@ export const useApi = () => {
 
         setIsLoading(true);
         setError(null);
+        setResults(null);
 
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}?q=${q}&lang-id=1&project-id=602&project-type-id=1&sport-ids=${sportIds}&type-ids=${typeIds}`,
