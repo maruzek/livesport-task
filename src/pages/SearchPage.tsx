@@ -46,8 +46,8 @@ const SearchPage = () => {
                   {items.map((item) => (
                     <Link
                       key={item.id}
-                      to={`/detail/${item.id}`}
-                      state={item}
+                      to={`/detail`}
+                      state={{ item }}
                       className="block hover:bg-gray-700"
                     >
                       <SearchItem item={item} />
