@@ -47,7 +47,7 @@ export type SearchResult = {
   superTemplate: any | null;
 };
 
-type Images = {
+export type Images = {
   path: string;
   usageId: number;
   variantTypeId: number;
