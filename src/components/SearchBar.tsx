@@ -1,15 +1,19 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { useSearchParams } from "react-router";
+import FilterButton from "./FilterButton";
 
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") ?? "");
+  const [activeFilter, setActiveFilter] = useState<string>(
+    searchParams.get("filter") ?? "all",
+  );
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchParams({ q: searchQuery });
+    setSearchParams({ q: searchQuery, filter: activeFilter });
   };
 
   return (
@@ -29,15 +33,27 @@ const SearchBar = () => {
         </div>
       </form>
       <div className="flex w-full flex-row items-center justify-start gap-2 px-4">
-        <div className="flex items-center justify-center rounded-md bg-red-700 p-2 text-white">
-          <span>Vše</span>
-        </div>
-        <div className="flex items-center justify-center rounded-md bg-red-700 p-2 text-white">
-          <span>Soutěže</span>
-        </div>
-        <div className="flex items-center justify-center rounded-md bg-red-700 p-2 text-white">
-          <span>Týmy</span>
-        </div>
+        <FilterButton
+          filterValue="all"
+          onFilterChange={setActiveFilter}
+          activeFilter={activeFilter}
+        >
+          Vše
+        </FilterButton>
+        <FilterButton
+          filterValue="teams"
+          onFilterChange={setActiveFilter}
+          activeFilter={activeFilter}
+        >
+          Týmy
+        </FilterButton>
+        <FilterButton
+          filterValue="competitions"
+          onFilterChange={setActiveFilter}
+          activeFilter={activeFilter}
+        >
+          Soutěže
+        </FilterButton>
       </div>
       <hr className="my-3 text-gray-500" />
     </div>

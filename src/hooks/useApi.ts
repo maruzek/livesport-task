@@ -7,7 +7,16 @@ export const useApi = () => {
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q") ?? "";
   const sportIds = "1,2,3,4,5,6,7,8,9";
-  const typeIds = searchParams.get("type-ids") ?? "1,2,3,4";
+  const filter = searchParams.get("filter") ?? "all";
+  let typeIds = "1,2,3,4";
+
+  if (filter === "all") {
+    typeIds = "1,2,3,4";
+  } else if (filter === "teams") {
+    typeIds = "2,3,4";
+  } else if (filter === "competitions") {
+    typeIds = "1";
+  }
   //   const typeIds = searchParams.get("type-ids") ?? "all";
 
   const [results, setResults] = useState<Record<string, SearchResult[]> | null>(

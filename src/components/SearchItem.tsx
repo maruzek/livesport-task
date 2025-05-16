@@ -6,6 +6,7 @@ type SearchItemProps = {
 };
 
 const SearchItem = ({ item }: SearchItemProps) => {
+  // Nezobrazuje loga lig, protože je to jiný typ
   const img = item.images.filter((img) => img.variantTypeId == 15)[0]?.path
     ? `${import.meta.env.VITE_IMG_URL}${item.images.filter((img) => img.variantTypeId == 15)[0]?.path}`
     : placeholder;
