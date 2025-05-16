@@ -24,7 +24,7 @@ const SearchItem = ({ item }: SearchItemProps) => {
         <img
           src={img}
           alt={`Picture ${item.name}`}
-          className={`p-1 ${item.type.name == "Player" || (item.type.name == "PlayerInTeam" && "pb-0")}`}
+          className={`p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
         />
       </figure>
       <div>

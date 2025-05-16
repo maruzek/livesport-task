@@ -3,6 +3,7 @@ import SearchBar from "../components/SearchBar";
 
 import { useApi } from "../hooks/useApi";
 import SearchItem from "../components/SearchItem";
+import SearchSkeleton from "../components/SearchSkeleton";
 
 const SearchPage = () => {
   const { results, error, isLoading } = useApi();
@@ -19,11 +20,7 @@ const SearchPage = () => {
                 <span className="">{error.message}</span>
               </div>
             )}
-            {isLoading && (
-              <div className="my-4 flex w-full items-center justify-center bg-gray-700 p-4 text-white">
-                <span className="">Loading...</span>
-              </div>
-            )}
+            {isLoading && <SearchSkeleton />}
             {results &&
               Object.entries(results).map(([sport, items]) => (
                 <div key={sport} className="flex w-full flex-col">
