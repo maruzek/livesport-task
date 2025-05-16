@@ -20,7 +20,7 @@ const SearchItem = ({ item }: SearchItemProps) => {
   )[0];
 
   return (
-    <article key={item.id} className="flex flex-row px-4 pt-4">
+    <article key={item.id} className="flex flex-row px-4 py-3">
       <figure
         className={`mr-3 h-14 w-14 rounded-md bg-white p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
       >

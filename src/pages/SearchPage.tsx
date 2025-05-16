@@ -5,6 +5,7 @@ import { useApi } from "../hooks/useApi";
 import SearchItem from "../components/SearchItem";
 import SearchSkeleton from "../components/SearchSkeleton";
 import SearchError from "../components/SearchError";
+import { Link } from "react-router";
 
 const SearchPage = () => {
   const { results, error, isLoading, retry } = useApi();
@@ -43,7 +44,14 @@ const SearchPage = () => {
                     {sport}
                   </span>
                   {items.map((item) => (
-                    <SearchItem key={item.id} item={item} />
+                    <Link
+                      key={item.id}
+                      to={`/detail/${item.id}`}
+                      state={item}
+                      className="block hover:bg-gray-700"
+                    >
+                      <SearchItem item={item} />
+                    </Link>
                   ))}
                 </div>
               ))}
