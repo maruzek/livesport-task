@@ -20,11 +20,13 @@ const SearchItem = ({ item }: SearchItemProps) => {
 
   return (
     <article key={item.id} className="flex flex-row px-4 pt-4">
-      <figure className="mr-3 w-1/8 rounded-md bg-white">
+      <figure
+        className={`mr-3 h-14 w-14 rounded-md bg-white p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
+      >
         <img
           src={img}
           alt={`Picture ${item.name}`}
-          className={`p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
+          className={`block h-full w-full object-contain`}
         />
       </figure>
       <div>
@@ -32,9 +34,7 @@ const SearchItem = ({ item }: SearchItemProps) => {
           {item.name}
           <img src={imgDefaultCountry} alt="" className="h-4 w-4" />
         </h4>
-        <div className="flex items-center gap-2 text-sm text-gray-400">
-          <span>{team?.name}</span>
-        </div>
+        <span className="text-sm text-gray-400">{team?.name}</span>
       </div>
     </article>
   );
