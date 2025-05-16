@@ -40,15 +40,6 @@ export const useApi = () => {
       );
 
       if (!response.ok) {
-        // const data = await response.json();
-
-        // setError({
-        //   message: "There was an error while loading the results",
-        //   code: response.status,
-        //   detail: data.message,
-        // });
-
-        // throw new Error("Network response was not ok");
         const body = await response.json().catch(() => ({}));
         throw {
           type: "http",
