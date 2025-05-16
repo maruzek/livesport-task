@@ -11,3 +11,8 @@ body {
   color: #ffffff;
   @apply bg-gray-600 text-white *:bg-gray-600;
 }
+
+h1 {
+  font-family: "Tektur Variable", system-ui;
+  @apply text-2xl font-medium;
+}
