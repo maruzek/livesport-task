@@ -17,7 +17,6 @@ export const useApi = () => {
   } else if (filter === "competitions") {
     typeIds = "1";
   }
-  //   const typeIds = searchParams.get("type-ids") ?? "all";
 
   const [results, setResults] = useState<Record<string, SearchResult[]> | null>(
     null,
@@ -41,15 +40,21 @@ export const useApi = () => {
       );
 
       if (!response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
 
-        setError({
-          message: "There was an error while loading the results",
-          code: response.status,
-          detail: data.message,
-        });
+        // setError({
+        //   message: "There was an error while loading the results",
+        //   code: response.status,
+        //   detail: data.message,
+        // });
 
-        throw new Error("Network response was not ok");
+        // throw new Error("Network response was not ok");
+        const body = await response.json().catch(() => ({}));
+        throw {
+          type: "http",
+          status: response.status,
+          message: body.message ?? response.statusText,
+        };
       }
 
       const data: SearchResult[] = await response.json();
@@ -69,13 +74,52 @@ export const useApi = () => {
       console.log(filteredData);
 
       setResults(filteredData);
-    } catch (error) {
-      console.log(error);
-      // if (error instanceof Error) {
-      //   setError({ message: error.message });
-      // } else {
-      //   setError({ message: "An unknown error occurred" });
-      // }
+    } catch (err: any) {
+      if (!navigator.onLine || err instanceof TypeError) {
+        setError({
+          code: 0,
+          message: "Internet connection appears to be offline.",
+          detail: err.message || "Please check your network and retry.",
+        });
+      } else if (err.type === "http") {
+        let message: string = "An error occurred.";
+
+        switch (err.status) {
+          case 400:
+            message =
+              "Bad request. Please check your input. An importat value is probably missing.";
+            break;
+          case 401:
+            message = "Unauthorized. Please log in.";
+            break;
+          case 403:
+            message = "Forbidden. You don't have permission to do that.";
+            break;
+          case 404:
+            message = "Not found. The requested resource could not be found.";
+            break;
+          case 422:
+            message = "Invalid values. Please check your input.";
+            break;
+          case 500:
+            message = "Internal server error. Please try again later.";
+            break;
+          case 503:
+            message = "Service unavailable. Please try again later.";
+            break;
+        }
+        setError({
+          code: err.status,
+          message: message,
+          detail: err.message,
+        });
+      } else {
+        setError({
+          code: 500,
+          message: "An unexpected error occurred.",
+          detail: err.message || "",
+        });
+      }
     } finally {
       setIsLoading(false);
     }

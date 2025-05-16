@@ -10,8 +10,9 @@ const SearchError = ({ error, onRetry }: SearchErrorProps) => {
   const [isDetailOpened, setIsDetailOpened] = useState<boolean>(false);
 
   return (
-    <div className="my-4 flex w-full flex-col items-center justify-center gap-2 p-4">
-      <h2 className="font-bold">{error.message}</h2>
+    <div className="my-2 flex w-full flex-col items-center justify-center gap-2 p-4 text-center">
+      <h2 className="text-4xl font-black">{error.code}</h2>
+      <h3 className="text-xl font-bold">{error.message}</h3>
       <div>
         <button
           onClick={() => onRetry()}

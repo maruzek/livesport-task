@@ -22,7 +22,7 @@ const SearchPage = () => {
           <div>
             {error && <SearchError error={error} onRetry={retry} />}
             {isLoading && <SearchSkeleton />}
-            {!results && !isLoading && (
+            {!results && !isLoading && !error && (
               <div className="flex w-full flex-col items-center justify-center p-4">
                 <h2 className="text-center text-lg font-bold text-white">
                   Use the search bar to find your favorite teams or players
