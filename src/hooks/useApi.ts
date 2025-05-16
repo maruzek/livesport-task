@@ -27,7 +27,10 @@ export const useApi = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      if (!q) return;
+      if (!q) {
+        setResults(null);
+        return;
+      }
 
       setIsLoading(true);
       setError(null);
