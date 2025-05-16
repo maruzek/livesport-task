@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { useSearchParams } from "react-router";
 import FilterButton from "./FilterButton";
+import { CircleX } from "lucide-react";
 
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,10 +37,10 @@ const SearchBar = () => {
           {searchQuery && (
             <button
               type="button"
-              className="absolute right-30 text-gray-400 hover:text-white"
+              className="absolute right-28 cursor-pointer text-gray-400 transition-colors duration-100 hover:text-white"
               onClick={handleClear}
             >
-              &times;
+              <CircleX />
             </button>
           )}
           <button className="cursor-pointer rounded-md rounded-tl-none rounded-bl-none border border-red-800 bg-red-700 px-4 py-2 text-white transition-colors duration-100 hover:bg-red-800">

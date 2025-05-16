@@ -50,8 +50,6 @@ export const useApi = () => {
 
       const data: SearchResult[] = await response.json();
 
-      console.log(data);
-
       const filteredData: Record<string, SearchResult[]> = data.reduce(
         (acc: Record<string, SearchResult[]>, item) => {
           const key = item.sport.name;
@@ -61,8 +59,6 @@ export const useApi = () => {
         },
         {} as Record<string, SearchResult[]>,
       );
-
-      console.log(filteredData);
 
       setResults(filteredData);
     } catch (err: any) {
