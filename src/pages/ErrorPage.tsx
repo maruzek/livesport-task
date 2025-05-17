@@ -8,7 +8,7 @@ const ErrorPage = () => {
         <h2 className="tektur text-4xl font-medium text-white">
           404 - Not Found
         </h2>
-        <h3 className="px-4 pt-3 text-lg font-bold">This page doesn't exist</h3>
+        <p className="px-4 pt-3 text-lg font-bold">This page doesn't exist</p>
         <div className="mt-5">
           <Link
             to="/"
