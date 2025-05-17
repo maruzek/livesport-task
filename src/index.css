@@ -20,3 +20,7 @@ h1 {
 .nav-li .active {
   @apply text-red-500;
 }
+
+.tektur {
+  font-family: "Tektur Variable", system-ui;
+}
