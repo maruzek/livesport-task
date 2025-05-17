@@ -1,15 +1,16 @@
 import { useLocation } from "react-router";
 import type { SearchResult } from "../types/SearchResult";
 import BasicLayout from "../layouts/BasicLayout";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import placeholder from "../assets/placeholder.jpg";
 import { Star } from "lucide-react";
+import useFavorites from "../hooks/useFavourites";
 
 const DetailPage = () => {
   // puvodni varianta pouzivala useParams, ale to nedavalo smysl a bylo to neprehledne
   // const { entityId: id } = useParams();
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const { state } = useLocation();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const item = (state as { item?: SearchResult })?.item;
 
@@ -40,7 +41,7 @@ const DetailPage = () => {
     "";
 
   const handleAddToFav = () => {
-    setIsFavorite((prev) => !prev);
+    toggleFavorite(item);
   };
 
   return (
@@ -69,11 +70,11 @@ const DetailPage = () => {
           </div>
           <button
             onClick={handleAddToFav}
-            className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-gray-700 transition-colors duration-100 hover:bg-gray-600 hover:text-white ${isFavorite ? "text-white" : "text-gray-400"}`}
+            className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-gray-700 transition-colors duration-100 hover:bg-gray-600 hover:text-white ${isFavorite(item) ? "text-white" : "text-gray-400"}`}
           >
             <Star
-              fill={isFavorite ? "#fff" : "transparent"}
-              strokeWidth={isFavorite ? 1 : 2}
+              fill={isFavorite(item) ? "#fff" : "transparent"}
+              strokeWidth={isFavorite(item) ? 1 : 2}
             />
           </button>
         </div>
