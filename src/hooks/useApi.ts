@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import type { Error } from "../types/Error";
 import type { SearchResult } from "../types/SearchResult";
+import groupResultsBySport from "../utils/groupResultsBySport";
 
 export const useApi = () => {
   const [searchParams] = useSearchParams();
@@ -50,17 +51,18 @@ export const useApi = () => {
 
       const data: SearchResult[] = await response.json();
 
-      const filteredData: Record<string, SearchResult[]> = data.reduce(
-        (acc: Record<string, SearchResult[]>, item) => {
-          const key = item.sport.name;
+      // const filteredData: Record<string, SearchResult[]> = data.reduce(
+      //   (acc: Record<string, SearchResult[]>, item) => {
+      //     const key = item.sport.name;
 
-          (acc[key] = acc[key] || []).push(item);
-          return acc;
-        },
-        {} as Record<string, SearchResult[]>,
-      );
+      //     (acc[key] = acc[key] || []).push(item);
+      //     return acc;
+      //   },
+      //   {} as Record<string, SearchResult[]>,
+      // );
 
-      setResults(filteredData);
+      // setResults(filteredData);
+      setResults(groupResultsBySport(data));
     } catch (err: any) {
       if (!navigator.onLine || err instanceof TypeError) {
         setError({
