@@ -3,9 +3,10 @@ import { useFavorites } from "../hooks/useFavorites";
 import SearchItem from "../components/SearchItem";
 import BottomNav from "../components/BottomNav";
 import SportGroup from "../components/SportGroup";
+import { Star } from "lucide-react";
 
 const FavouritesPage = () => {
-  const { groupedFavoritesBySport } = useFavorites();
+  const { groupedFavoritesBySport, toggleFavorite } = useFavorites();
 
   return (
     <BasicLayout>
@@ -17,7 +18,12 @@ const FavouritesPage = () => {
           Object.entries(groupedFavoritesBySport).map(([sport, items]) => (
             <SportGroup key={sport} sport={sport}>
               {items.map((item) => (
-                <SearchItem item={item} />
+                <SearchItem
+                  item={item}
+                  rightButtonIcon={<Star fill="#fff" strokeWidth={1} />}
+                  rightButtonAction={() => toggleFavorite(item)}
+                  key={item.id}
+                />
               ))}
             </SportGroup>
           ))}

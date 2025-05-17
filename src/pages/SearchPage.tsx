@@ -42,7 +42,7 @@ const SearchPage = () => {
               Object.entries(results).map(([sport, items]) => (
                 <SportGroup key={sport} sport={sport}>
                   {items.map((item) => (
-                    <SearchItem item={item} />
+                    <SearchItem item={item} key={item.id} />
                   ))}
                 </SportGroup>
               ))}
