@@ -41,7 +41,7 @@ const SearchPage = () => {
             {results &&
               Object.entries(results).map(([sport, items]) => (
                 <div key={sport} className="flex w-full flex-col">
-                  <span className="mt-3 w-full bg-red-700 px-4 py-1 font-bold text-white">
+                  <span className="w-full bg-red-700 px-4 py-1 font-bold text-white">
                     {sport}
                   </span>
                   {items.map((item) => (
