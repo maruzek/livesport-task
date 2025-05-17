@@ -16,3 +16,7 @@ h1 {
   font-family: "Tektur Variable", system-ui;
   @apply text-2xl font-medium;
 }
+
+.nav-li .active {
+  @apply text-red-500;
+}

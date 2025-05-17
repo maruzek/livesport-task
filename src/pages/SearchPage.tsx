@@ -5,7 +5,8 @@ import { useApi } from "../hooks/useApi";
 import SearchItem from "../components/SearchItem";
 import SearchSkeleton from "../components/SearchSkeleton";
 import SearchError from "../components/SearchError";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
+import { House, Star } from "lucide-react";
 
 const SearchPage = () => {
   const { results, error, isLoading, retry } = useApi();
@@ -15,12 +16,12 @@ const SearchPage = () => {
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center">
-      <div className="flex h-screen w-full flex-col bg-gray-800 shadow-2xl shadow-zinc-900 sm:w-3/5 md:w-3/5 lg:w-2/5 xl:w-1/4">
+      <div className="relative flex h-screen w-full flex-col bg-gray-800 shadow-2xl shadow-zinc-900 sm:w-3/5 md:w-3/5 lg:w-2/5 xl:w-1/4">
         <Header />
-        <main className="flex w-full flex-col overflow-y-scroll pb-5">
+        <main className="flex w-full flex-col overflow-y-scroll pb-18">
           <SearchBar />
 
-          <div>
+          <div className="">
             {error && <SearchError error={error} onRetry={retry} />}
             {isLoading && <SearchSkeleton />}
             {!results && !isLoading && !error && (
@@ -48,7 +49,7 @@ const SearchPage = () => {
                       key={item.id}
                       to={`/detail`}
                       state={{ item }}
-                      className="block hover:bg-gray-700"
+                      className="block transition-colors duration-100 hover:bg-gray-700"
                     >
                       <SearchItem item={item} />
                     </Link>
@@ -57,6 +58,28 @@ const SearchPage = () => {
               ))}
           </div>
         </main>
+        <nav className="absolute right-0 bottom-0 left-0 z-10 flex w-full items-center justify-center bg-gray-800">
+          <ul className="flex h-full w-full items-center justify-between">
+            <li className="nav-li w-1/2 text-center">
+              <NavLink
+                to="/?q="
+                className="flex w-full flex-col items-center px-4 py-2 text-white transition-colors duration-100 hover:bg-gray-700"
+              >
+                <House />
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-li w-1/2 text-center">
+              <NavLink
+                to="/favourites"
+                className="flex flex-col items-center px-4 py-2 text-white transition-colors duration-100 hover:bg-gray-700"
+              >
+                <Star />
+                Favourites
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
