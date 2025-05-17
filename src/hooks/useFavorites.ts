@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { SearchResult } from "../types/SearchResult";
 import useLocalStorage from "./useLocalStorage";
+import groupResultsBySport from "../utils/groupResultsBySport";
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useLocalStorage<SearchResult[]>(
@@ -23,17 +24,7 @@ export const useFavorites = () => {
   };
 
   const groupedFavoritesBySport = useMemo(() => {
-    if (!favorites || favorites.length === 0) {
-      return null; // Or an empty object {} if you prefer
-    }
-    return favorites.reduce(
-      (acc: Record<string, SearchResult[]>, item) => {
-        const key = item.sport.name;
-        (acc[key] = acc[key] || []).push(item);
-        return acc;
-      },
-      {} as Record<string, SearchResult[]>,
-    );
+    return groupResultsBySport(favorites);
   }, [favorites]);
 
   return {
