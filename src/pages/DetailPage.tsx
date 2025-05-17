@@ -1,12 +1,14 @@
 import { useLocation } from "react-router";
 import type { SearchResult } from "../types/SearchResult";
 import BasicLayout from "../layouts/BasicLayout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import placeholder from "../assets/placeholder.jpg";
+import { Star } from "lucide-react";
 
 const DetailPage = () => {
   // puvodni varianta pouzivala useParams, ale to nedavalo smysl a bylo to neprehledne
   // const { entityId: id } = useParams();
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const { state } = useLocation();
 
   const item = (state as { item?: SearchResult })?.item;
@@ -37,6 +39,10 @@ const DetailPage = () => {
     `${import.meta.env.VITE_IMG_URL}${item.defaultCountry.images.filter((img) => img.variantTypeId == 87)[0]?.path}` ||
     "";
 
+  const handleAddToFav = () => {
+    setIsFavorite((prev) => !prev);
+  };
+
   return (
     <BasicLayout>
       <section className="flex w-full flex-col bg-gray-800">
@@ -44,22 +50,35 @@ const DetailPage = () => {
           {item.sport.name} - {item.gender.name}
         </h3>
         <hr className="mt-2 mb-2 text-gray-500" />
-        <div className="flex flex-row gap-4 p-4">
-          <div className="h-25 w-25 rounded-md bg-white p-1">
-            <img src={img} alt="" />
+        <div className="flex flex-row items-center justify-between p-4">
+          <div className="flex flex-row gap-4">
+            <div className="h-25 w-25 rounded-md bg-white p-1">
+              <img src={img} alt="" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">{item.name}</h2>
+              <p className="mt-1 flex items-center gap-1 text-sm text-gray-400">
+                <img
+                  src={imgDefaultCountry}
+                  alt={`Flag of ${item.defaultCountry.name}`}
+                  className="h-4 w-4"
+                />
+                {item.defaultCountry.name}
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold">{item.name}</h2>
-            <p className="mt-1 flex items-center gap-1 text-sm text-gray-400">
-              <img
-                src={imgDefaultCountry}
-                alt={`Flag of ${item.defaultCountry.name}`}
-                className="h-4 w-4"
-              />
-              {item.defaultCountry.name}
-            </p>
-          </div>
+          <button
+            onClick={handleAddToFav}
+            className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-gray-700 transition-colors duration-100 hover:bg-gray-600 hover:text-white ${isFavorite ? "text-white" : "text-gray-400"}`}
+          >
+            <Star
+              fill={isFavorite ? "#fff" : "transparent"}
+              strokeWidth={isFavorite ? 1 : 2}
+            />
+          </button>
         </div>
+      </section>
+      <section>
         {item.type.name === "PlayerInTeam" && (
           <>
             <div className="w-full bg-gray-700 p-4">
