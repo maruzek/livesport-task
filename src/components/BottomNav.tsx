@@ -20,7 +20,7 @@ const BottomNav = () => {
             className="flex flex-col items-center px-4 py-2 text-white transition-colors duration-100 hover:bg-gray-700"
           >
             <Star />
-            Favourites
+            Favorites
           </NavLink>
         </li>
       </ul>
