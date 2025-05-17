@@ -20,7 +20,10 @@ const DetailPage = () => {
     }
 
     if (item) {
-      document.title = `${item.name} | FlashVýsledky`;
+      const defaultTeam = item.teams?.filter(
+        (team) => team.participantType.name == "Team",
+      )[0]?.name;
+      document.title = `${item.name} (${defaultTeam}) stats | FlashVýsledky`;
     }
   }, [item]);
 
