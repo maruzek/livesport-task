@@ -1,15 +1,19 @@
 import { ArrowLeft, Info } from "lucide-react";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleBackButtonClick = () => {
-    if (location.key) {
+    console.log("Current location.key:", location.key);
+    console.log("Document referrer:", document.referrer);
+    if (location.key !== "default") {
       navigate(-1);
     } else {
-      navigate("/", { replace: true });
+      if (location.pathname !== "/") {
+        navigate("/", { replace: true });
+      }
     }
   };
 
@@ -24,9 +28,12 @@ const Header = () => {
         </button>
         <h1>FlashResults</h1>
       </div>
-      <span className="cursor-pointer transition-colors duration-100 hover:text-gray-400">
+      <Link
+        to="/about"
+        className="cursor-pointer transition-colors duration-100 hover:text-gray-400"
+      >
         <Info />
-      </span>
+      </Link>
     </header>
   );
 };
