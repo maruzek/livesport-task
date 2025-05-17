@@ -4,7 +4,7 @@ import BasicLayout from "../layouts/BasicLayout";
 import { useEffect } from "react";
 import placeholder from "../assets/placeholder.jpg";
 import { Star } from "lucide-react";
-import useFavorites from "../hooks/useFavourites";
+import { useFavorites } from "../hooks/useFavourites";
 
 const DetailPage = () => {
   // puvodni varianta pouzivala useParams, ale to nedavalo smysl a bylo to neprehledne

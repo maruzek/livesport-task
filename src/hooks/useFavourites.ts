@@ -1,7 +1,7 @@
 import type { SearchResult } from "../types/SearchResult";
 import useLocalStorage from "./useLocalStorage";
 
-const useFavorites = () => {
+export const useFavorites = () => {
   const [favorites, setFavorites] = useLocalStorage<SearchResult[]>(
     "favorites",
     [],
@@ -27,5 +27,3 @@ const useFavorites = () => {
     toggleFavorite,
   } as const;
 };
-
-export default useFavorites;
