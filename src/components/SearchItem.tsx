@@ -1,5 +1,6 @@
 import type { SearchResult } from "../types/SearchResult";
 import placeholder from "../assets/placeholder.jpg";
+import { Link } from "react-router";
 
 type SearchItemProps = {
   item: SearchResult;
@@ -20,24 +21,31 @@ const SearchItem = ({ item }: SearchItemProps) => {
   )[0];
 
   return (
-    <article key={item.id} className="flex flex-row px-4 py-3">
-      <figure
-        className={`mr-3 h-14 w-14 rounded-md bg-white p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
-      >
-        <img
-          src={img}
-          alt={`Picture ${item.name}`}
-          className={`block h-full w-full object-contain`}
-        />
-      </figure>
-      <div>
-        <h4 className="text-md flex items-center gap-2 font-bold">
-          {item.name}
-          <img src={imgDefaultCountry} alt="" className="h-4 w-4" />
-        </h4>
-        <span className="text-sm text-gray-400">{team?.name}</span>
-      </div>
-    </article>
+    <Link
+      key={item.id}
+      to={`/detail`}
+      state={{ item }}
+      className="block transition-colors duration-100 hover:bg-gray-700"
+    >
+      <article key={item.id} className="flex flex-row px-4 py-3">
+        <figure
+          className={`mr-3 h-14 w-14 rounded-md bg-white p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
+        >
+          <img
+            src={img}
+            alt={`Picture ${item.name}`}
+            className={`block h-full w-full object-contain`}
+          />
+        </figure>
+        <div>
+          <h4 className="text-md flex items-center gap-2 font-bold">
+            {item.name}
+            <img src={imgDefaultCountry} alt="" className="h-4 w-4" />
+          </h4>
+          <span className="text-sm text-gray-400">{team?.name}</span>
+        </div>
+      </article>
+    </Link>
   );
 };
 

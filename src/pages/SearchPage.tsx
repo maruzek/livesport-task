@@ -5,8 +5,8 @@ import { useApi } from "../hooks/useApi";
 import SearchItem from "../components/SearchItem";
 import SearchSkeleton from "../components/SearchSkeleton";
 import SearchError from "../components/SearchError";
-import { Link } from "react-router";
 import BottomNav from "../components/BottomNav";
+import SportGroup from "../components/SportGroup";
 
 const SearchPage = () => {
   const { results, error, isLoading, retry } = useApi();
@@ -40,21 +40,11 @@ const SearchPage = () => {
             )}
             {results &&
               Object.entries(results).map(([sport, items]) => (
-                <div key={sport} className="flex w-full flex-col">
-                  <span className="w-full bg-red-700 px-4 py-1 font-bold text-white">
-                    {sport}
-                  </span>
+                <SportGroup key={sport} sport={sport}>
                   {items.map((item) => (
-                    <Link
-                      key={item.id}
-                      to={`/detail`}
-                      state={{ item }}
-                      className="block transition-colors duration-100 hover:bg-gray-700"
-                    >
-                      <SearchItem item={item} />
-                    </Link>
+                    <SearchItem item={item} />
                   ))}
-                </div>
+                </SportGroup>
               ))}
           </div>
         </main>
