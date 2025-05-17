@@ -22,7 +22,7 @@ const Header = () => {
         >
           <ArrowLeft />
         </button>
-        <h1>FlashVýsledky</h1>
+        <h1>FlashResults</h1>
       </div>
       <span className="cursor-pointer transition-colors duration-100 hover:text-gray-400">
         <Info />

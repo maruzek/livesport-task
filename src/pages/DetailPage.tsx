@@ -16,7 +16,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     if (!item) {
-      document.title = "Not found";
+      document.title = "Not found | FlashResults";
     }
 
     if (item) {
@@ -24,9 +24,9 @@ const DetailPage = () => {
         (team) => team.participantType.name == "Team",
       )[0]?.name;
       if (defaultTeam) {
-        document.title = `${item.name} (${defaultTeam}) stats | FlashVýsledky`;
+        document.title = `${item.name} (${defaultTeam}) stats | FlashResults`;
       } else {
-        document.title = `${item.name} stats | FlashVýsledky`;
+        document.title = `${item.name} stats | FlashResults`;
       }
     }
   }, [item]);
