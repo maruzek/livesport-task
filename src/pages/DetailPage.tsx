@@ -61,7 +61,7 @@ const DetailPage = () => {
         <div className="flex flex-row items-center justify-between p-4">
           <div className="flex flex-row gap-4">
             <div className="h-25 w-25 rounded-md bg-white p-1">
-              <img src={img} alt="" />
+              <img src={img} alt={item.name} />
             </div>
             <div>
               <h2 className="text-2xl font-bold">{item.name}</h2>
