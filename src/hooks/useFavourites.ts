@@ -8,13 +8,10 @@ const useFavorites = () => {
   );
 
   const isFavorite = (item: SearchResult) => {
-    console.log("isFavorite", item);
-    console.log(favorites.some((saved) => saved.id === item.id));
     return favorites.some((saved) => saved.id === item.id);
   };
 
   const toggleFavorite = (item: SearchResult) => {
-    console.log("toggleFavorite", item);
     if (isFavorite(item)) {
       setFavorites((prev) =>
         prev.filter((favorite) => favorite.id !== item.id),
