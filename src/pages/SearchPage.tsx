@@ -1,56 +1,46 @@
-import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 
 import { useApi } from "../hooks/useApi";
 import SearchItem from "../components/SearchItem";
 import SearchSkeleton from "../components/SearchSkeleton";
 import SearchError from "../components/SearchError";
-import BottomNav from "../components/BottomNav";
 import SportGroup from "../components/SportGroup";
+import BasicLayout from "../layouts/BasicLayout";
+import { useSearchParams } from "react-router";
 
 const SearchPage = () => {
   const { results, error, isLoading, retry } = useApi();
+  const [searchParams] = useSearchParams();
+  const q = searchParams.get("q") ?? "";
   const totalCount = results
     ? Object.values(results).reduce((sum, arr) => sum + arr.length, 0)
     : 0;
 
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center">
-      <div className="relative flex h-screen w-full flex-col bg-gray-800 shadow-2xl shadow-zinc-900 sm:w-3/5 md:w-3/5 lg:w-2/5 xl:w-1/4">
-        <Header />
-        <main className="flex w-full flex-col overflow-y-scroll pb-18">
-          <SearchBar />
+    <BasicLayout displayBottomNav>
+      <SearchBar />
 
-          <div className="">
-            {error && <SearchError error={error} onRetry={retry} />}
-            {isLoading && <SearchSkeleton />}
-            {!results && !isLoading && !error && (
-              <div className="flex w-full flex-col items-center justify-center p-4">
-                <h2 className="text-center text-lg font-bold text-white">
-                  Use the search bar to find your favorite teams or players
-                </h2>
-              </div>
-            )}
-            {results && totalCount === 0 && (
-              <div className="flex w-full flex-col items-center justify-center p-4">
-                <h2 className="text-lg font-bold text-white">
-                  No results found
-                </h2>
-              </div>
-            )}
-            {results &&
-              Object.entries(results).map(([sport, items]) => (
-                <SportGroup key={sport} sport={sport}>
-                  {items.map((item) => (
-                    <SearchItem item={item} key={item.id} />
-                  ))}
-                </SportGroup>
-              ))}
-          </div>
-        </main>
-        <BottomNav />
-      </div>
-    </div>
+      {error && <SearchError error={error} onRetry={retry} />}
+      {isLoading && <SearchSkeleton />}
+      {!results && !isLoading && !error && totalCount === 0 && q === "" && (
+        <h2 className="mt-4 text-center text-lg font-bold text-white">
+          Use the search bar to find your favorite teams or players
+        </h2>
+      )}
+      {totalCount === 0 && q !== "" && !isLoading && !error && (
+        <h2 className="mt-4 text-center text-lg font-bold text-white">
+          No results found
+        </h2>
+      )}
+      {results &&
+        Object.entries(results).map(([sport, items]) => (
+          <SportGroup key={sport} sport={sport}>
+            {items.map((item) => (
+              <SearchItem item={item} key={item.id} />
+            ))}
+          </SportGroup>
+        ))}
+    </BasicLayout>
   );
 };
 

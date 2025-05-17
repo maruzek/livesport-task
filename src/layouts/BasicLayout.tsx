@@ -1,10 +1,12 @@
+import BottomNav from "../components/BottomNav";
 import Header from "../components/Header";
 
 type BasicLayoutProps = {
   children: React.ReactNode;
+  displayBottomNav?: boolean;
 };
 
-const BasicLayout = ({ children }: BasicLayoutProps) => {
+const BasicLayout = ({ children, displayBottomNav }: BasicLayoutProps) => {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center">
       <div className="relative flex h-screen w-full flex-col bg-gray-800 shadow-2xl shadow-zinc-900 sm:w-3/5 md:w-3/5 lg:w-2/5 xl:w-1/4">
@@ -12,6 +14,7 @@ const BasicLayout = ({ children }: BasicLayoutProps) => {
         <main className="flex w-full flex-col overflow-y-scroll pb-18">
           {children}
         </main>
+        {displayBottomNav && <BottomNav />}
       </div>
     </div>
   );
