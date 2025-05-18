@@ -26,7 +26,7 @@ const FilterButton = ({
   return (
     <button
       onClick={handleFilterClick}
-      className={`flex cursor-pointer items-center justify-center rounded-md p-2 text-white ${filterValue == activeFilter ? "bg-red-700" : "bg-gray-700"} transition-colors duration-100 hover:bg-red-800`}
+      className={`flex cursor-pointer items-center justify-center rounded-md px-3 py-2 text-white ${filterValue == activeFilter ? "bg-red-700" : "bg-gray-700"} transition-colors duration-100 hover:bg-red-800`}
     >
       {children}
     </button>

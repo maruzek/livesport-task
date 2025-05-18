@@ -1,4 +1,4 @@
-import { House, Star } from "lucide-react";
+import { Search, Star } from "lucide-react";
 import { NavLink } from "react-router";
 
 const BottomNav = () => {
@@ -10,8 +10,8 @@ const BottomNav = () => {
             to="/"
             className="flex w-full flex-col items-center px-4 py-2 text-white transition-colors duration-100 hover:bg-gray-700"
           >
-            <House />
-            <span className="text-sm">Home</span>
+            <Search />
+            <span className="text-sm">Search</span>
           </NavLink>
         </li>
         <li className="nav-li w-1/2 text-center">
