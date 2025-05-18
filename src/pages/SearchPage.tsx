@@ -41,14 +41,18 @@ const SearchPage = () => {
           No results found
         </h2>
       )}
-      {results &&
-        Object.entries(results).map(([sport, items]) => (
-          <SportGroup key={sport} sport={sport}>
-            {items.map((item) => (
-              <SearchItem item={item} key={item.id} />
-            ))}
-          </SportGroup>
-        ))}
+      {results && (
+        <>
+          <h2 className="mb-4 px-4 text-2xl font-bold">Results</h2>
+          {Object.entries(results).map(([sport, items]) => (
+            <SportGroup key={sport} sport={sport}>
+              {items.map((item) => (
+                <SearchItem item={item} key={item.id} />
+              ))}
+            </SportGroup>
+          ))}
+        </>
+      )}
     </BasicLayout>
   );
 };

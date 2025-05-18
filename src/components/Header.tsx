@@ -1,7 +1,11 @@
 import { ArrowLeft, Info } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router";
 
-const Header = () => {
+type HeaderProps = {
+  title?: string;
+};
+
+const Header = ({ title = "FlashResults" }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,7 +30,7 @@ const Header = () => {
         >
           <ArrowLeft />
         </button>
-        <h1>FlashResults</h1>
+        <h1>{title}</h1>
       </div>
       <Link
         to="/about"
