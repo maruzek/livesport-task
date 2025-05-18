@@ -35,15 +35,15 @@ const SearchItem = ({
       <Link
         to={`/detail`}
         state={{ item }}
-        className="flex grow flex-row px-4 py-3"
+        className="flex grow flex-row gap-3 px-4 py-3"
       >
         <figure
-          className={`mr-3 h-14 w-14 rounded-md bg-white p-1 ${(item.type.name == "Player" || item.type.name == "PlayerInTeam") && "pb-0"}`}
+          className={`h-14 w-14 rounded-md bg-white p-1 ${item.type.name == "Player" || item.type.name == "PlayerInTeam" ? "pb-0" : ""}`}
         >
           <img
             src={img}
             alt={`Picture ${item.name}`}
-            className={`block h-full w-full object-contain`}
+            className={`h-full w-full`}
           />
         </figure>
         <div>

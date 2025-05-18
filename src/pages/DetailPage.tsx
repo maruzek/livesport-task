@@ -60,8 +60,10 @@ const DetailPage = () => {
         <hr className="mt-2 mb-2 text-gray-500" />
         <div className="flex flex-row items-center justify-between p-4">
           <div className="flex flex-row gap-4">
-            <div className="h-25 w-25 rounded-md bg-white p-1">
-              <img src={img} alt={item.name} />
+            <div
+              className={`h-25 w-25 rounded-md bg-white p-1 ${item.type.name == "Player" || item.type.name == "PlayerInTeam" ? "pb-0" : ""}`}
+            >
+              <img src={img} alt={item.name} className="h-full w-full" />
             </div>
             <div>
               <h2 className="text-2xl font-bold">{item.name}</h2>
