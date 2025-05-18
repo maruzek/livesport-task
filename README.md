@@ -1,54 +1,82 @@
-# React + TypeScript + Vite
+# Livesport Summer Internship Recruitment task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tato malá aplikace vznikla ze zadání tasku pro ověření znalostí kandidáta (neboli mě) při výběrovém řízení na letní stáž v Livesportu
 
-Currently, two official plugins are available:
+## Jak spustit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone git@github.com:maruzek/livesport-task.git
+# git clone https://github.com/maruzek/livesport-task.git
+cd livesport-task
+pnpm i
+pnpm dev
+# pnpm dev --host
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Cíle
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Ověřit znalosti kandidáta
+2. Implementovat jednoduchou aplikaci na vyhledávaní entit - soutěže, týmy, hráči, pomocí Livesport Search Service API
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Požadavky
+
+### Funkční požadavky
+
+- [x] 2 obrazovky - výpis výsledků a detail
+- [x] Výpis bude obsahovat titulek (např. Výsledky), vyhledávací pole, tlačítko pro vyhledání a list výsledků
+- [x] Vyhledávání musí mít možnost filtrace dle typu entity (viz parametry API):
+  - všechny typy - id 1,2,3,4
+  - pouze soutěže - id 1
+  - pouze participanti - id 2,3,4
+- [x] Aplikace bude vhodně zobrazovat stav stahování dat - loading
+- [x] V případě jakékoliv chyby - nedostupný internet, serverová chyba, … se zobrazí alert s příslušnou zprávou a tlačítkem s akcí “Obnovit”
+- [x] Každý řádek musí zobrazovat minimálně:
+  - název entity - např. Arsenal FC, Roger Federer, a pod.
+  - logo/fotku, případně placeholder jestli chybí
+- [x] Každý řádek bude navigovat na detail
+- [x] Detail bude obsahovat titulek s názvem entity, větší fotku/logo/placeholder, zemi soutěže/týmu/hráče, dle uvážení další dostupné informace
+
+### Nefunkční požadavky
+
+- [x] Komponentu vyhledávacího pole implementuj sám, na ostatní UI prvky můžeš použít komponentovou knihovnu dle uvážení.
+- [x] Pro práci s daty využít Promises popřípadě async/await
+- [ ] Logiku pokrýt testy (rád bych viděl jeden na komponentu, který ověří chová a obsah
+      UI prvku a jeden asynchronní na logiku stahování dat)
+- [x] Využít git a práci průběžně a logicky commitovat
+
+### API požadavky
+
+- [x] lang-id: 1 (celá aplikace je v angličtině)
+- [x] project-id: 602
+- [x] project-type-id: 1
+- [x] sport-ids: 1,2,3,4,5,6,7,8,9
+- [x] type-ids: 1,2,3,4 (podle filteru)
+- [x] q
+
+- [x] u obrázků “variantTypeId”=15 (mimo vlajek států)
+- [x] Pokud obrázek v dané variantě pro soutěž či participanta nenajdu v response, zobrazím nějaký placeholder
+
+### Error handling
+
+Apikace zobrazuje příslušnou chybovou hlášku v případě, že dojde k chybě. Konkrétně zobrazí unikátní hlášku pro následující HTTP status kódy:
+
+- [x] 400
+- [x] 422
+- [x] 503
+- [x] 401
+- [x] 403
+- [x] 404
+- [x] 500
+- [x] 503
+
+## Bonusové funkce přidané mnou
+
+- [x] Možnost přidávat a odebírat entity do oblíbených. Vše se ukládá do localStorage
+
+## Použité Technologie
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
