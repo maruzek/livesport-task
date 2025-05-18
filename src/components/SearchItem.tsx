@@ -2,6 +2,7 @@ import type { SearchResult } from "../types/SearchResult";
 import placeholder from "../assets/placeholder.jpg";
 import { Link } from "react-router";
 import type { ReactNode } from "react";
+import { imageAltGenerator } from "../utils/imageAltGenerator";
 
 type SearchItemProps = {
   item: SearchResult;
@@ -27,6 +28,8 @@ const SearchItem = ({
     (team) => team.participantType.name == "Team",
   )[0];
 
+  const imgAlt = imageAltGenerator(item);
+
   return (
     <article
       key={item.id}
@@ -40,16 +43,16 @@ const SearchItem = ({
         <figure
           className={`h-14 w-14 rounded-md bg-white p-1 ${item.type.name == "Player" || item.type.name == "PlayerInTeam" ? "pb-0" : ""}`}
         >
-          <img
-            src={img}
-            alt={`Picture ${item.name}`}
-            className={`h-full w-full`}
-          />
+          <img src={img} alt={imgAlt} className={`h-full w-full`} />
         </figure>
         <div>
           <h4 className="text-md flex items-center gap-2 font-bold">
             {item.name}
-            <img src={imgDefaultCountry} alt="" className="h-4 w-4" />
+            <img
+              src={imgDefaultCountry}
+              alt={`Flag of ${item.defaultCountry.name}`}
+              className="h-4 w-4"
+            />
           </h4>
           <span className="text-sm text-gray-400">{team?.name}</span>
         </div>

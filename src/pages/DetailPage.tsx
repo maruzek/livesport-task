@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import placeholder from "../assets/placeholder.jpg";
 import { Star } from "lucide-react";
 import { useFavorites } from "../hooks/useFavorites";
+import { imageAltGenerator } from "../utils/imageAltGenerator";
 
 const DetailPage = () => {
   // puvodni varianta pouzivala useParams, ale to nedavalo smysl a bylo to neprehledne
@@ -43,18 +44,18 @@ const DetailPage = () => {
     ? `${import.meta.env.VITE_IMG_URL}${item.images.filter((img) => img.variantTypeId == 15)[0]?.path}`
     : placeholder;
 
-  let imgAlt = "Placeholder image";
+  const imgAlt = imageAltGenerator(item);
 
-  switch (item.type.name) {
-    case "Player":
-    case "PlayerInTeam":
-      imgAlt = `Picture of ${item.name}`;
-      break;
-    case "Team":
-    case "League":
-      imgAlt = `Logo of ${item.name}`;
-      break;
-  }
+  // switch (item.type.name) {
+  //   case "Player":
+  //   case "PlayerInTeam":
+  //     imgAlt = `Picture of ${item.name}`;
+  //     break;
+  //   case "Team":
+  //   case "League":
+  //     imgAlt = `Logo of ${item.name}`;
+  //     break;
+  // }
 
   const imgDefaultCountry =
     `${import.meta.env.VITE_IMG_URL}${item.defaultCountry.images.filter((img) => img.variantTypeId == 87)[0]?.path}` ||
