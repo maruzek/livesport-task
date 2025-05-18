@@ -94,6 +94,7 @@ const DetailPage = () => {
           <button
             onClick={handleAddToFav}
             className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-gray-700 transition-colors duration-100 hover:bg-gray-600 hover:text-white ${isFavorite(item) ? "text-white" : "text-gray-400"}`}
+            aria-label="Toggle favorites"
           >
             <Star
               fill={isFavorite(item) ? "#fff" : "transparent"}
