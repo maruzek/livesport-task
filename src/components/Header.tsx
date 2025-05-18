@@ -25,6 +25,7 @@ const Header = ({ title = "FlashResults" }: HeaderProps) => {
         <button
           className="cursor-pointer transition-colors duration-100 hover:text-gray-400"
           onClick={handleBackButtonClick}
+          aria-label="Go back"
         >
           <ArrowLeft />
         </button>
@@ -33,6 +34,7 @@ const Header = ({ title = "FlashResults" }: HeaderProps) => {
       <Link
         to="/about"
         className="cursor-pointer transition-colors duration-100 hover:text-gray-400"
+        aria-label="About"
       >
         <Info />
       </Link>

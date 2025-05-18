@@ -45,11 +45,15 @@ const SearchBar = () => {
               type="button"
               className="absolute right-23 cursor-pointer text-gray-400 transition-colors duration-100 hover:text-white"
               onClick={handleClear}
+              aria-label="Clear search"
             >
               <CircleX />
             </button>
           )}
-          <button className="cursor-pointer rounded-md rounded-tl-none rounded-bl-none border border-red-800 bg-red-700 px-4 py-2 text-white transition-colors duration-100 hover:bg-red-800">
+          <button
+            className="cursor-pointer rounded-md rounded-tl-none rounded-bl-none border border-red-800 bg-red-700 px-4 py-2 text-white transition-colors duration-100 hover:bg-red-800"
+            aria-label="Search"
+          >
             <Search />
           </button>
         </div>

@@ -33,7 +33,7 @@ export type SearchResult = {
   participantTypes: ParticipantType[] | null;
   teams:
     | {
-        id: number;
+        id: string;
         name: string;
         kind: string;
         participantType: ParticipantType;
@@ -53,7 +53,7 @@ export type Images = {
   variantTypeId: number;
 };
 
-type ParticipantType = {
+export type ParticipantType = {
   id: number;
   name: string;
 };

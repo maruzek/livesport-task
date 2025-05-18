@@ -1,6 +1,9 @@
 const SearchSkeleton = () => {
   return (
-    <div className="flex w-full flex-col space-y-4">
+    <div
+      className="flex w-full flex-col space-y-4"
+      data-testid="search-skeleton"
+    >
       <div className="ml-4 h-6 w-1/4 animate-pulse rounded bg-gray-600" />
       <div className="">
         <div className="w-full bg-gray-700 px-4 py-2">
