@@ -43,7 +43,7 @@ const SearchBar = () => {
           {searchQuery && (
             <button
               type="button"
-              className="absolute right-28 cursor-pointer text-gray-400 transition-colors duration-100 hover:text-white"
+              className="absolute right-23 cursor-pointer text-gray-400 transition-colors duration-100 hover:text-white"
               onClick={handleClear}
             >
               <CircleX />
