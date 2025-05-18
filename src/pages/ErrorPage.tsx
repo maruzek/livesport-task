@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import BasicLayout from "../layouts/BasicLayout";
+import { useEffect } from "react";
 
 const ErrorPage = () => {
+  useEffect(() => {
+    document.title = "404 - Not Found | FlashResults";
+  }, []);
+
   return (
     <BasicLayout>
       <section className="mt-4 text-center">

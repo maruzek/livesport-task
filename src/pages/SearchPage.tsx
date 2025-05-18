@@ -7,6 +7,7 @@ import SearchError from "../components/SearchError";
 import SportGroup from "../components/SportGroup";
 import BasicLayout from "../layouts/BasicLayout";
 import { useSearchParams } from "react-router";
+import { useEffect } from "react";
 
 const SearchPage = () => {
   const { results, error, isLoading, retry } = useApi();
@@ -15,6 +16,14 @@ const SearchPage = () => {
   const totalCount = results
     ? Object.values(results).reduce((sum, arr) => sum + arr.length, 0)
     : 0;
+
+  useEffect(() => {
+    if (q !== "") {
+      document.title = `Search results for ${q} | FlashResults`;
+    } else {
+      document.title = "Search | FlashResults";
+    }
+  }, [q]);
 
   return (
     <BasicLayout displayBottomNav>

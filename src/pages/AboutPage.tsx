@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import BasicLayout from "../layouts/BasicLayout";
+import { useEffect } from "react";
 
 const AboutPage = () => {
+  useEffect(() => {
+    document.title = "About | FlashResults";
+  }, []);
+
   return (
     <BasicLayout>
       <section className="p-4 text-center">

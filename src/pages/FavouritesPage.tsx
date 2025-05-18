@@ -3,9 +3,14 @@ import { useFavorites } from "../hooks/useFavorites";
 import SearchItem from "../components/SearchItem";
 import SportGroup from "../components/SportGroup";
 import { Star } from "lucide-react";
+import { useEffect } from "react";
 
 const FavouritesPage = () => {
   const { groupedFavoritesBySport, toggleFavorite } = useFavorites();
+
+  useEffect(() => {
+    document.title = "Favourites | FlashResults";
+  }, []);
 
   return (
     <BasicLayout displayBottomNav>
