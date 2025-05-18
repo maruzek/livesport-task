@@ -1,7 +1,6 @@
 import BasicLayout from "../layouts/BasicLayout";
 import { useFavorites } from "../hooks/useFavorites";
 import SearchItem from "../components/SearchItem";
-import BottomNav from "../components/BottomNav";
 import SportGroup from "../components/SportGroup";
 import { Star } from "lucide-react";
 
@@ -9,7 +8,7 @@ const FavouritesPage = () => {
   const { groupedFavoritesBySport, toggleFavorite } = useFavorites();
 
   return (
-    <BasicLayout>
+    <BasicLayout displayBottomNav>
       <section className="p-4">
         <h2 className="text-2xl font-bold">Your favourites</h2>
       </section>
@@ -28,7 +27,6 @@ const FavouritesPage = () => {
             </SportGroup>
           ))}
       </section>
-      <BottomNav />
     </BasicLayout>
   );
 };
