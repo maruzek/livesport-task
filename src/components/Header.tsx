@@ -10,8 +10,6 @@ const Header = ({ title = "FlashResults" }: HeaderProps) => {
   const location = useLocation();
 
   const handleBackButtonClick = () => {
-    console.log("Current location.key:", location.key);
-    console.log("Document referrer:", document.referrer);
     if (location.key !== "default") {
       navigate(-1);
     } else {

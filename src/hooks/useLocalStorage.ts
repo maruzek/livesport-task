@@ -8,7 +8,7 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
       const item = window.localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
-      console.log(`Error reading localStorage key “${key}”:`, error);
+      console.error(`Error reading localStorage key “${key}”:`, error);
       return initialValue;
     }
   });
@@ -24,7 +24,7 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
         setStoredValue(valueToStore);
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       } catch (error) {
-        console.log(`Error setting localStorage key “${key}”:`, error);
+        console.error(`Error setting localStorage key “${key}”:`, error);
       }
     },
     [key, storedValue],
@@ -36,7 +36,7 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
         try {
           setStoredValue(JSON.parse(event.newValue) as T);
         } catch (error) {
-          console.log(`Error parsing localStorage key “${key}”:`, error);
+          console.error(`Error parsing localStorage key “${key}”:`, error);
         }
       } else if (event.key === key && event.newValue === null) {
         setStoredValue(initialValue);
