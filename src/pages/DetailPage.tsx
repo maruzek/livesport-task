@@ -43,6 +43,19 @@ const DetailPage = () => {
     ? `${import.meta.env.VITE_IMG_URL}${item.images.filter((img) => img.variantTypeId == 15)[0]?.path}`
     : placeholder;
 
+  let imgAlt = "Placeholder image";
+
+  switch (item.type.name) {
+    case "Player":
+    case "PlayerInTeam":
+      imgAlt = `Picture of ${item.name}`;
+      break;
+    case "Team":
+    case "League":
+      imgAlt = `Logo of ${item.name}`;
+      break;
+  }
+
   const imgDefaultCountry =
     `${import.meta.env.VITE_IMG_URL}${item.defaultCountry.images.filter((img) => img.variantTypeId == 87)[0]?.path}` ||
     "";
@@ -63,7 +76,7 @@ const DetailPage = () => {
             <div
               className={`h-25 w-25 rounded-md bg-white p-1 ${item.type.name == "Player" || item.type.name == "PlayerInTeam" ? "pb-0" : ""}`}
             >
-              <img src={img} alt={item.name} className="h-full w-full" />
+              <img src={img} alt={imgAlt} className="h-full w-full" />
             </div>
             <div>
               <h2 className="text-2xl font-bold">{item.name}</h2>
