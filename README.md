@@ -1,14 +1,16 @@
 # Livesport Summer Internship Recruitment task
 
-Tato malá aplikace vznikla ze zadání tasku pro ověření znalostí kandidáta (neboli mě) při výběrovém řízení na letní sáže v Livesportu
+Tato malá aplikace vznikla ze zadání tasku pro ověření znalostí kandidáta (neboli mě) při výběrovém řízení na letní stáž v Livesportu
 
 ## Jak spustit
 
 ```bash
-git clone
+git clone git@github.com:maruzek/livesport-task.git
+# git clone https://github.com/maruzek/livesport-task.git
 cd livesport-task
 pnpm i
 pnpm dev
+# pnpm dev --host
 ```
 
 ## Cíle
@@ -21,7 +23,7 @@ pnpm dev
 ### Funkční požadavky
 
 - [x] 2 obrazovky - výpis výsledků a detail
-- [ ] Výpis bude obsahovat titulek (např. Výsledky), vyhledávací pole, tlačítko pro vyhledání a list výsledků
+- [x] Výpis bude obsahovat titulek (např. Výsledky), vyhledávací pole, tlačítko pro vyhledání a list výsledků
 - [x] Vyhledávání musí mít možnost filtrace dle typu entity (viz parametry API):
   - všechny typy - id 1,2,3,4
   - pouze soutěže - id 1
@@ -70,3 +72,11 @@ Apikace zobrazuje příslušnou chybovou hlášku v případě, že dojde k chyb
 ## Bonusové funkce přidané mnou
 
 - [x] Možnost přidávat a odebírat entity do oblíbených. Vše se ukládá do localStorage
+
+## Použité Technologie
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS

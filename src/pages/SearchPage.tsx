@@ -32,12 +32,12 @@ const SearchPage = () => {
       {error && <SearchError error={error} onRetry={retry} />}
       {isLoading && <SearchSkeleton />}
       {!results && !isLoading && !error && totalCount === 0 && q === "" && (
-        <h2 className="mt-4 text-center text-lg font-bold text-white">
+        <h2 className="mt-4 px-4 text-center text-lg font-bold text-white">
           Use the search bar to find your favorite teams or players
         </h2>
       )}
       {totalCount === 0 && q !== "" && !isLoading && !error && (
-        <h2 className="mt-4 text-center text-lg font-bold text-white">
+        <h2 className="mt-4 px-4 text-center text-lg font-bold text-white">
           No results found
         </h2>
       )}
