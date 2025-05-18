@@ -40,7 +40,7 @@ pnpm dev
 
 - [x] Komponentu vyhledávacího pole implementuj sám, na ostatní UI prvky můžeš použít komponentovou knihovnu dle uvážení.
 - [x] Pro práci s daty využít Promises popřípadě async/await
-- [ ] Logiku pokrýt testy (rád bych viděl jeden na komponentu, který ověří chová a obsah
+- [x] Logiku pokrýt testy (rád bych viděl jeden na komponentu, který ověří chová a obsah
       UI prvku a jeden asynchronní na logiku stahování dat)
 - [x] Využít git a práci průběžně a logicky commitovat
 
