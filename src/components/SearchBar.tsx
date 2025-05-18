@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { useSearchParams } from "react-router";
 import FilterButton from "./FilterButton";
@@ -11,6 +11,7 @@ const SearchBar = () => {
   const [activeFilter, setActiveFilter] = useState<string>(
     searchParams.get("filter") ?? "all",
   );
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +22,10 @@ const SearchBar = () => {
     setSearchQuery("");
     setActiveFilter("all");
     setSearchParams({ q: "", filter: "all" });
+
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
   };
 
   return (
@@ -33,6 +38,7 @@ const SearchBar = () => {
             className="w-full rounded-md rounded-tr-none rounded-br-none border border-gray-600 bg-gray-700 p-2 text-white focus:ring-1 focus:ring-red-500 focus:outline-none"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            ref={searchInputRef}
           />
           {searchQuery && (
             <button
