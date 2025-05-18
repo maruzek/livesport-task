@@ -44,7 +44,7 @@ pnpm dev
 
 ### API požadavky
 
-- [x] lang-id: 1
+- [x] lang-id: 1 (celá aplikace je v angličtině)
 - [x] project-id: 602
 - [x] project-type-id: 1
 - [x] sport-ids: 1,2,3,4,5,6,7,8,9
